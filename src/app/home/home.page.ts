@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from  '../api.service';
 import { FileUploader, FileLikeObject } from  'ng2-file-upload';
 import { concat } from  'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,18 +13,21 @@ export class HomePage implements OnInit {
 
   public fileUploader: FileUploader = new FileUploader({});
 
-  username:string="";
   caption:string="";
+  id: any;
 
-  constructor(private uploadingService: ApiService) {}
+  constructor(private uploadingService: ApiService, private route: ActivatedRoute) {}
 
-  ngOnInit(){}
+  ngOnInit(){
+        this.id = this.route.snapshot.paramMap.get('id');
+  }
 
   getFiles(): FileLikeObject[] {
     return this.fileUploader.queue.map((fileItem) => {
       return fileItem.file;
 
     });
+ 
   }
   uploadFiles() {
 
@@ -34,7 +38,7 @@ export class HomePage implements OnInit {
     files.forEach((file) => {
       let formData = new FormData();
       formData.append('photo' , file.rawFile, file.name);
-      formData.append('username' , this.username);
+      formData.append('user' , this.id);
       formData.append('caption' , this.caption);
       requests.push(this.uploadingService.uploadFormData(formData));
 

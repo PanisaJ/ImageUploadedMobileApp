@@ -10,16 +10,12 @@
       <input type="file" accept="image/*" ng2FileSelect [uploader]="fileUploader" multiple style="opacity: 0" #fileInp>
     </ion-item>
   <ion-item>
-      <ion-label position="floating">Name</ion-label>
-       <ion-input type="text" [(ngModel)]="username"></ion-input>
-    </ion-item>
-  <ion-item>
       <ion-label position="floating">Caption</ion-label>
       <ion-textarea [(ngModel)]="caption"></ion-textarea>
     </ion-item>
   
   <ion-button type="submit" shape="round" color="primary" expand="block" (click)="uploadFiles()">Upload files&nbsp;<ion-icon ios="ios-cloud-upload" md="md-cloud-upload"></ion-icon></ion-button>
-<ion-button type="submit" shape="round" color="primary" expand="block" routerLink="/timeline">Home</ion-button>
+<ion-button type="submit" shape="round" color="primary" expand="block" [routerLink]="'/timeline/'+id">Home</ion-button>
   <h2>Your files: {{ fileUploader?.queue?.length }}</h2>
   <ul>
     <li *ngFor="let item of fileUploader.queue">

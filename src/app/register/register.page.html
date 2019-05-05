@@ -5,17 +5,21 @@
 </ion-header>
 
 <ion-content>
+<ion-item *ngIf="error_message">
+<ion-label color="danger">{{error_message}}</ion-label>
+</ion-item>
 <ion-item>
       <ion-label position="floating">Username</ion-label>
        <ion-input type="text" [(ngModel)]="username"></ion-input>
     </ion-item>
   <ion-item>
       <ion-label position="floating">Password</ion-label>
-      <ion-input type="text" [(ngModel)]="password1"></ion-input>
+      <ion-input type="password" [(ngModel)]="password1"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Password again</ion-label>
-      <ion-input type="text" [(ngModel)]="password2"></ion-input>
+      <ion-label position="floating">confirm Password</ion-label>
+      <ion-input type="password" [(ngModel)]="password2"></ion-input>
     </ion-item>
-<ion-button type="submit" shape="round" color="primary" expand="block">Register</ion-button>
+<ion-button type="submit" shape="round" color="primary" expand="block" (click)="Register()">Register</ion-button>
+<ion-button type="submit" shape="round" color="danger" expand="block" routerLink="/login">Back</ion-button>
 </ion-content>

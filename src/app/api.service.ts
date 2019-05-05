@@ -18,11 +18,19 @@ export class ApiService {
     return this.http.post<any>(`${this.DJANGO_API_SERVER}/comment/`, formData);
   }
 
+  public registerUser(formData) {
+    return this.http.post<any>(`${this.DJANGO_API_SERVER}/register/`, formData);
+  }
+
   public getData() {
     return this.http.get(`${this.DJANGO_API_SERVER}/images/`);
   }
 
   public getComment() {
     return this.http.get(`${this.DJANGO_API_SERVER}/getcomment/`);
+  }
+
+  public getUsername() {
+    return this.http.get(`${this.DJANGO_API_SERVER}/getusername/`);
   }
 }
